@@ -385,7 +385,54 @@ Optimalizace:
 
 [kalkulačka ceny]( https://llmpricingcalculator.com/)
 
+#### Příklad
 
+vstup:
+```json
+{
+  "messages": [
+    {
+      "role": "system",
+      "content": "Jsi profesionální emailový asistent. Piš stručně, zdvořile a jasně. Dodržuj formální tón."
+    },
+    {
+      "role": "system",
+      "content": "Firemní styl: používej oslovení, podpis a strukturovaný text."
+    },
+
+    {
+      "role": "user",
+      "content": "Potřebuju odpovědět klientovi."
+    },
+    {
+      "role": "assistant",
+      "content": "Jasně, pošli původní email."
+    },
+
+    {
+      "role": "user",
+      "content": "Dobrý den, kolik stojí implementace vašeho řešení?"
+    },
+
+    {
+      "role": "system",
+      "content": "KONTEXT:\nCena: 50 000–120 000 Kč.\nDélka implementace: 2–6 týdnů.\nDemo zdarma."
+    }
+  ]
+}
+```
+input 148 tokenů
+```json
+{
+  "output": [
+    {
+      "role": "assistant",
+      "content": "Dobrý den,\n\nděkujeme za Váš dotaz.\n\nCena implementace se pohybuje mezi 50 000 Kč a 120 000 Kč dle rozsahu projektu. Realizace trvá přibližně 2 až 6 týdnů.\n\nRádi Vám nabídneme demo zdarma.\n\nS pozdravem,\nTým"
+    }
+  ]
+}
+```
+output 85 tokenů
 
 
 ### Bezpečnost
