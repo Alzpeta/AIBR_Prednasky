@@ -2,7 +2,7 @@
 
 ## Klient-server komunikace
 
-Internetová komunikace funguje jako rozhovor mezi dvěma stranami: klientem a serverem.
+Internetová komunikace nejčastěji funguje jako rozhovor mezi klientem a serverem, kdy klient posílá požadavky a server na ně odpovídá.
 Klient je ten, kdo posílá požadavek (například webový prohlížeč nebo mobilní aplikace), zatímco server 
 na tento požadavek odpovídá (například vrácením webové stránky nebo dat z databáze).
 
