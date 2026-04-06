@@ -451,3 +451,6 @@ uživatel se snaží obejít instrukce modelu
 - jasný system prompt
 - omezení kontextu
 - validace odpovědi
+
+
+necoooo
