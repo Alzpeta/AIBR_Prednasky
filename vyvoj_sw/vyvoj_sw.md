@@ -452,3 +452,7 @@ Plně autonomní AI software engineer od Cognition Labs.
 #### SWE-banch
 
 https://www.swebench.com/
+
+### Project Glasswing
+
+https://www.anthropic.com/glasswing
