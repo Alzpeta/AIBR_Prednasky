@@ -185,53 +185,79 @@ agent.run("Jaké je počasí v Praze?")
 
 ```python
 from langgraph.graph import StateGraph
+from langchain.chat_models import ChatOpenAI
+import json
 
-# stav
-class State(dict):
-    pass
+llm = ChatOpenAI()
 
-def think(state):
-    question = state["input"]
-    # simulace LLM
-    return {"action": "weather", "city": "Praha"}
+def get_weather(city):
+    return f"Počasí v {city}: 18°C"
 
-def act(state):
-    if state["action"] == "weather":
-        return {"result": f"Počasí v {state['city']}: 18°C"}
+class State(dict): pass
 
-def should_continue(state):
-    return "result" not in state
+def think(s):
+    res = llm.invoke(f"""
+User: {s['input']}
+If weather → {{"action":"weather","city":"Praha"}}
+Else → {{"action":"final","answer":"..."}}
+""")
+    return json.loads(res.content)
 
-# graph
-builder = StateGraph(State)
+def act(s):
+    if s["action"] == "weather":
+        return {"answer": get_weather(s["city"])}
 
-builder.add_node("think", think)
-builder.add_node("act", act)
+g = StateGraph(State)
+g.add_node("think", think)
+g.add_node("act", act)
+g.set_entry_point("think")
+g.add_edge("think","act")
+g.add_edge("act","__end__")
 
-builder.set_entry_point("think")
-
-builder.add_edge("think", "act")
-builder.add_conditional_edges(
-    "act",
-    should_continue,
-    {
-        True: "think",
-        False: "__end__"
-    }
-)
-
-graph = builder.compile()
-
-graph.invoke({"input": "Jaké je počasí v Praze?"})
+app = g.compile()
+print(app.invoke({"input":"Jaké je počasí v Praze?"}))
 ```
 
 **AutoGen**
 - multiagentní komunikace
-- experimentální  
+- experimentální 
+- volná konverzace, žádné pevné kroky
+
+```python
+from autogen import AssistantAgent, UserProxyAgent
+
+assistant = AssistantAgent(
+    name="assistant",
+    llm_config={"model": "gpt-4"},
+    system_message="You write Python code"
+)
+
+user = UserProxyAgent(
+    name="user",
+    code_execution_config={"work_dir": "./"}
+)
+
+user.initiate_chat(
+    assistant,
+    message="Napiš Python funkci na faktoriál a spusť ji pro 5"
+)
+```
 
 **CrewAI**
 - role-based agenti (team)
 - automatická orchestrace  
+- pevné tasky
+
+```python
+researcher = Agent(
+    role="Researcher",
+    goal="Najít relevantní informace",
+    backstory="Jsi expert na vyhledávání informací"
+)
+writer = Agent(role="Writer", goal="Napsat článek")
+task1 = Task(description="Najdi info o AI", agent=researcher)
+task2 = Task(description="Napiš článek", agent=writer)
+```
 
 **Semantic Kernel**
 - enterprise řešení
