@@ -69,6 +69,9 @@ dobře strukturovaný latentní prostor
 nevýhoda:
 často méně ostré obrázky než diffusion/GAN
 
+<p>
+  <img src="./cvae_latent_space.jpg" style="width:400px; margin-left:15%;">
+</p>
 
 ## Jak funguje generování obrázků z promptu
 
