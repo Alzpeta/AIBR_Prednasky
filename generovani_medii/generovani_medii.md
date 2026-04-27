@@ -26,6 +26,7 @@ generování: reverzní proces
 <p>
   <img src="./difuzni_modely.png" style="width:400px; margin-left:15%;">
 </p>
+
 ## Jak funguje generování obrázků z promptu
 
 klíčová myšlenka: propojení textu a obrazu přes společný prostor (embeddingy)
