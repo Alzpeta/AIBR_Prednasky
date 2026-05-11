@@ -1,4 +1,4 @@
-# Přednáška 2: LLM infrastruktura
+# LLM infrastruktura
 
 ## 1. Cesta requestu
 
