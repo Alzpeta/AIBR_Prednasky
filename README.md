@@ -11,3 +11,5 @@ Tento repozitář slouží jako rozcestník na jednotlivé materiály k předná
 - [Generování médií](generovani_medii/generovani_medii.md)
 - [Evaluace LLM](evaluace_llm/evaluace_llm.md)
 - [LLM infrastruktura](llm_infrastruktura/llm_infrastruktura.md)
+- [Provoz aplikace](provoz_aplikace/provoz_aplikace.md)
+- [Legislativa](legislativa/legislativa.md)
